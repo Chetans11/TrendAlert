@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "422236427403",
+    "project_id": "trendalert-d4a57",
+    "storage_bucket": "trendalert-d4a57.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:422236427403:android:70272eb090d85ad44db08e",
+        "android_client_info": {
+          "package_name": "com.example.trendalert"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "422236427403-3bulmp4sqi4hs58eik8jbkmgu8cfl70h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.trendalert",
+            "certificate_hash": "198ea9ccf55595d7a24d66d6a17d5a9177af2f23"
+          }
+        },
+        {
+          "client_id": "422236427403-ltp4ta6j4ba8qgdi07eia2mcpkaqecmt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWWSo2uZhxT0-Pyj-E7QDkdaflV6dvTUs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "422236427403-ltp4ta6j4ba8qgdi07eia2mcpkaqecmt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
