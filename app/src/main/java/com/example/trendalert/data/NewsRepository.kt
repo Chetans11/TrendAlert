@@ -10,13 +10,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 class NewsRepository {
     private val apiService = RetrofitClient.newsApiService
     private var currentLanguage = "en"
+    private val cachedArticles = mutableMapOf<String, Article>()
 
     fun setLanguage(languageCode: String) {
         currentLanguage = languageCode
     }
-
-    // Replace with your actual NewsData.io API key
-    private val apiKey = "pub_72566741feecdcc5d083de560dc1ca142a679"
 
     private fun mapToArticle(response: ArticleResponse): Article {
         return Article(
@@ -41,7 +39,12 @@ class NewsRepository {
                 country = "in",
                 language = currentLanguage
             )
-            response.results?.map { mapToArticle(it) } ?: emptyList()
+            val articles = response.results?.map { mapToArticle(it) } ?: emptyList()
+            // Cache the articles
+            articles.forEach { article ->
+                cachedArticles[article.url] = article
+            }
+            articles
         } catch (e: Exception) {
             println("Error fetching top news: ${e.message}")
             emptyList()
@@ -56,15 +59,25 @@ class NewsRepository {
                 language = currentLanguage
             )
             // Filter out any articles that don't match the category
-            response.results
+            val articles = response.results
                 ?.filter { article -> 
                     article.category?.any { it.equals(category, ignoreCase = true) } == true
                 }
                 ?.map { mapToArticle(it) }
                 ?: emptyList()
+            
+            // Cache the articles
+            articles.forEach { article ->
+                cachedArticles[article.url] = article
+            }
+            articles
         } catch (e: Exception) {
             println("Error fetching news by category: ${e.message}")
             emptyList()
         }
+    }
+
+    fun getArticleByUrl(url: String): Article? {
+        return cachedArticles[url]
     }
 } 

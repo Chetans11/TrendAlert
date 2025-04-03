@@ -100,4 +100,9 @@ dependencies {
     androidTestImplementation(libs.ui.test.junit4)
 
     implementation(libs.accompanist.systemuicontroller.v0301)
+
+    implementation (libs.androidx.material3.v111)
+    implementation (libs.coil.compose)
+    implementation (libs.androidx.lifecycle.viewmodel.compose.v287)
+    implementation (libs.androidx.lifecycle.runtime.compose)
 }

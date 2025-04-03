@@ -256,6 +256,7 @@ private fun SettingsItem(
                         Color.White 
                         else TrendAlertTheme.getTextColor()
                 )
+                Spacer(modifier = Modifier.height(6.dp))
                 Text(
                     text = subtitle,
                     style = MaterialTheme.typography.bodyMedium,

@@ -123,7 +123,7 @@ fun NewsCard(
                                 contentDescription = if (isBookmarked) "Remove bookmark" else "Add bookmark",
                                 tint = if (isBookmarked) 
                                     TrendAlertTheme.trendAlertBlue 
-                                    else TrendAlertTheme.getTextSecondaryColor(),
+                                    else TrendAlertTheme.getTextColor(),
                                 modifier = Modifier.size(20.dp)
                             )
                         }
@@ -134,7 +134,7 @@ fun NewsCard(
                             Icon(
                                 imageVector = Icons.Default.Share,
                                 contentDescription = "Share article",
-                                tint = TrendAlertTheme.getTextSecondaryColor(),
+                                tint = TrendAlertTheme.getTextColor(),
                                 modifier = Modifier.size(20.dp)
                             )
                         }

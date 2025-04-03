@@ -13,7 +13,7 @@ import com.example.trendalert.screens.NewsListScreen
 import com.example.trendalert.screens.ProfileScreen
 import com.example.trendalert.screens.SavedArticlesScreen
 import com.example.trendalert.screens.LanguagePreferencesScreen
-import com.example.trendalert.components.ArticleWebView
+import com.example.trendalert.screens.ArticleDetailScreen
 import com.example.trendalert.auth.presentation.sign_in.SignInScreen
 import com.example.trendalert.auth.presentation.sign_in.SignInState
 import java.net.URLEncoder
@@ -26,6 +26,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import com.example.trendalert.auth.presentation.sign_in.GoogleAuthUiClient
 import com.example.trendalert.viewmodels.SavedArticlesViewModel
+import com.example.trendalert.components.Article
+import android.content.Intent
 
 sealed class Screen(val route: String) {
     object SignIn : Screen("sign_in")
@@ -118,10 +120,42 @@ fun NavGraph(
         ) { backStackEntry ->
             val encodedUrl = backStackEntry.arguments?.getString("url") ?: return@composable
             val decodedUrl = URLDecoder.decode(encodedUrl, StandardCharsets.UTF_8.toString())
-            ArticleWebView(
-                url = decodedUrl,
-                modifier = Modifier.fillMaxSize()
-            )
+            
+            // Fetch article details from repository
+            val article = remember(decodedUrl) {
+                newsRepository.getArticleByUrl(decodedUrl)
+            }
+
+            article?.let { article ->
+                ArticleDetailScreen(
+                    article = article,
+                    onBackClick = { navController.navigateUp() },
+                    onShareClick = {
+                        val shareText = """
+                            ${article.title}
+                            
+                            Read more: ${article.url}
+                            
+                            Shared via TrendAlert
+                        """.trimIndent()
+                        
+                        val shareIntent = Intent(Intent.ACTION_SEND).apply {
+                            type = "text/plain"
+                            putExtra(Intent.EXTRA_SUBJECT, article.title)
+                            putExtra(Intent.EXTRA_TEXT, shareText)
+                        }
+                        context.startActivity(Intent.createChooser(shareIntent, "Share Article"))
+                    },
+                    onSaveClick = {
+                        if (savedArticlesViewModel.isArticleSaved(article.url)) {
+                            savedArticlesViewModel.removeArticle(article)
+                        } else {
+                            savedArticlesViewModel.addArticle(article)
+                        }
+                    },
+                    isSaved = savedArticlesViewModel.isArticleSaved(article.url)
+                )
+            }
         }
     }
 } 

@@ -21,52 +21,64 @@ val OpenSans = FontFamily(
     Font(R.font.opensans_semibold, FontWeight.SemiBold),
     Font(R.font.opensans_bold, FontWeight.Bold)
 )
+val PlayfairDisplay = FontFamily(
+    Font(R.font.playfairdisplay_regular),
+    Font(R.font.playfairdisplay_medium, FontWeight.Medium),
+    Font(R.font.playfairdisplay_semibold, FontWeight.SemiBold),
+    Font(R.font.playfairdisplay_bold, FontWeight.Bold)
+)
+val NewsReader = FontFamily(
+    Font(R.font.newsreader_regular),
+    Font(R.font.newsreader_medium, FontWeight.Medium),
+    Font(R.font.newsreader_semibold, FontWeight.SemiBold),
+    Font(R.font.newsreader_bold, FontWeight.Bold)
+)
 
 val Typography = Typography(
     headlineLarge = TextStyle(
-        fontFamily = Montserrat,
+        fontFamily = NewsReader,
         fontWeight = FontWeight.Bold,
         fontSize = 32.sp,
         lineHeight = 40.sp,
         letterSpacing = 0.sp
     ),
     headlineMedium = TextStyle(
-        fontFamily = Montserrat,
+        fontFamily = NewsReader,
         fontWeight = FontWeight.SemiBold,
         fontSize = 28.sp,
         lineHeight = 36.sp,
         letterSpacing = 0.sp
     ),
     titleLarge = TextStyle(
-        fontFamily = Montserrat,
+        fontFamily = NewsReader,
         fontWeight = FontWeight.SemiBold,
         fontSize = 22.sp,
         lineHeight = 28.sp,
         letterSpacing = 0.sp
     ),
     titleMedium = TextStyle(
-        fontFamily = Montserrat,
+        fontFamily = NewsReader,
         fontWeight = FontWeight.SemiBold,
         fontSize = 16.sp,
         lineHeight = 24.sp,
         letterSpacing = 0.15.sp
     ),
     bodyLarge = TextStyle(
-        fontFamily = OpenSans,
+        fontFamily = NewsReader,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp,
         lineHeight = 24.sp,
         letterSpacing = 0.5.sp
     ),
     bodyMedium = TextStyle(
-        fontFamily = OpenSans,
+        fontFamily = NewsReader,
         fontWeight = FontWeight.Normal,
         fontSize = 14.sp,
         lineHeight = 20.sp,
         letterSpacing = 0.25.sp
     ),
     labelMedium = TextStyle(
-        fontFamily = OpenSans,
+        fontFamily = NewsReader,
         fontWeight = FontWeight.Medium,
         fontSize = 12.sp,
         lineHeight = 16.sp,
